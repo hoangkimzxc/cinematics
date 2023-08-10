@@ -5,6 +5,17 @@ import axiosTMDB from "../../../../api/axiosTMDB";
 import "../../../../components/Common/HideScroll/HideScroll.css";
 import ImageComponent from "../../../search/components/ImageComponent";
 import LoadingModal from "../../../../components/Common/LoadingModal/LoadingModal";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import SwiperCore from "swiper/core"; // Import Swiper core and required modules
+
+import "../../../../App.css";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+SwiperCore.use([Navigation, Pagination]);
 
 function MoviesRow({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
@@ -30,73 +41,93 @@ function MoviesRow({ title, fetchUrl }) {
     setLoading(true);
   };
 
+  const breakpoints = {
+    320: {
+      slidesPerView: 1,
+    },
+    640: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+    1024: {
+      slidesPerView: 5,
+    },
+    1280: {
+      slidesPerView: 6,
+    },
+
+    // Add more breakpoints as needed
+  };
+
   return (
-    <div className="pb-6 ">
-      {loading ? (
-        ""
-      ) : (
+    <div className="">
+      {movies && (
         <div className="text-white text-xl font-bold px-4">{title}</div>
       )}
-      <div className="hide-scroll px-7 sm:px-4 py-6 flex flex-wrap gap-6">
-        {movies &&
-          movies?.map((movie, index) => (
-            <Link
-              to={`/movie/${movie?.id}`}
-              className="hover:cursor-pointer hover:-translate-0.5
-          hover:scale-110 duration-100 transition-all delay-[30ms] 
-          2xl:w-[15.2%] xl:w-[18.3%] lg:w-[23%] md:w-[30.8%] sm:w-[47%] w-full"
-              key={movie?.id}
-            >
-              <ImageComponent
-                src={
-                  (movie &&
-                    ((movie?.backdrop_path &&
-                      `${
-                        "https://image.tmdb.org/t/p/original" +
-                        movie.backdrop_path
-                      }`) ||
-                      (movie?.poster_path &&
-                        `${
-                          "https://image.tmdb.org/t/p/original" +
-                          movie.poster_path
-                        }`))) ||
-                  "https://picsum.photos/1900"
-                }
-                alt={`${
-                  movie?.original_title ||
-                  movie?.title ||
-                  movie?.original_name ||
-                  "Name"
-                }`}
-                className="w-full h-[16rem] sm:h-[11rem] md:h-[9rem] shadow-rose-500/50 rounded-lg
-                shadow-lg object-fill"
-              />
+      <div className="flex overflow-y-hidden overflow-x-hidden">
+        <Swiper
+          breakpoints={breakpoints}
+          spaceBetween={20}
+          navigation={true}
+          modules={[Navigation, Pagination]}
+          className="h-full p-4 w-full"
+          onSlideChange={(swiper) => {
+            if (swiper.isEnd) {
+              handleLoadMore();
+            }
+          }}
+        >
+          {movies &&
+            movies?.map((movie, index) => (
+              <SwiperSlide
+                className="hover:cursor-pointer hover:-translate-0.5
+              hover:scale-110 duration-100 transition-all delay-[30ms] 
+             h-full"
+                key={movie?.id}
+              >
+                <Link to={`/movie/${movie?.id}`}>
+                  <ImageComponent
+                    src={
+                      (movie &&
+                        ((movie?.backdrop_path &&
+                          `${
+                            "https://image.tmdb.org/t/p/original" +
+                            movie.backdrop_path
+                          }`) ||
+                          (movie?.poster_path &&
+                            `${
+                              "https://image.tmdb.org/t/p/original" +
+                              movie.poster_path
+                            }`))) ||
+                      "https://picsum.photos/1900"
+                    }
+                    alt={`${
+                      movie?.original_title ||
+                      movie?.title ||
+                      movie?.original_name ||
+                      "Name"
+                    }`}
+                    className="w-full sm:h-[11rem] md:h-[9rem] shadow-rose-500/50 rounded-lg
+                    shadow-lg object-fill"
+                  />
 
-              <div className="text-white mt-1">
-                {`${
-                  movie?.original_title ||
-                  movie?.title ||
-                  movie?.original_name ||
-                  "Name"
-                }`}
-              </div>
-            </Link>
-          ))}
-        {!loading && page < totalPage ? (
-          <button
-            className="text-amber-200 ml-3 h-[3rem] px-5 font-semibold my-auto 
-          rounded-3xl border-4 border-amber-500 shadow-amber-500/50 shadow-lg
-          hover:-translate-0.5
-          hover:scale-110 duration-100 transition-all delay-[30ms]"
-            onClick={handleLoadMore}
-          >
-            More...
-          </button>
-        ) : (
-          ""
-        )}
+                  <div className="text-white mt-1">
+                    {`${
+                      movie?.original_title ||
+                      movie?.title ||
+                      movie?.original_name ||
+                      "Name"
+                    }`}
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+        </Swiper>
       </div>
-      {loading ? <LoadingModal /> : ""}
+
+      {loading && <LoadingModal />}
     </div>
   );
 }

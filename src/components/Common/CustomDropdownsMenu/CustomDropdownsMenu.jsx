@@ -25,12 +25,13 @@ export default function CustomDropdownsMenu() {
         open={open}
         anchorEl={anchorEl}
         placement={"bottom-end"}
-        className="text-white z-50 bg-slate-500"
+        className="text-white z-50 bg-slate-600 rounded-lg border border-black"
       >
-        <div>The content of the Popper.</div>
-        <div>The content of the Popper.</div>
-        <div>The content of the Popper.</div>
-        <div>The content of the Popper.</div>
+        <div className="p-3">Profile</div>
+        <div className="p-3 flex items-center gap-2 border-t border-t-black">
+          <div>Log out</div>
+          <i className="fa-solid fa-right-from-bracket"></i>
+        </div>
       </Popper>
     </div>
   );
