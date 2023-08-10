@@ -17,4 +17,4 @@ function ImageComponent({ src, className }) {
   );
 }
 
-export default ImageComponent;
+export default React.memo(ImageComponent);

@@ -22,4 +22,4 @@ function MovieDetailGuestReviews({ rev }) {
   );
 }
 
-export default MovieDetailGuestReviews;
+export default React.memo(MovieDetailGuestReviews);

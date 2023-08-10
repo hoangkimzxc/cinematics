@@ -19,4 +19,4 @@ function MovieDetailVideoBackground({ videoList }) {
   );
 }
 
-export default MovieDetailVideoBackground;
+export default React.memo(MovieDetailVideoBackground);

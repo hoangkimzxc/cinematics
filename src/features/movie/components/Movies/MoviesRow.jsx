@@ -132,4 +132,4 @@ function MoviesRow({ title, fetchUrl }) {
   );
 }
 
-export default MoviesRow;
+export default React.memo(MoviesRow);

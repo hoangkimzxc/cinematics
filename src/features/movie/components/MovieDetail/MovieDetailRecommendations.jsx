@@ -49,4 +49,4 @@ function MovieDetailRecommendations({ recommendedvideoList }) {
   );
 }
 
-export default MovieDetailRecommendations;
+export default React.memo(MovieDetailRecommendations);

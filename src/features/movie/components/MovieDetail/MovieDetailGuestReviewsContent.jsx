@@ -32,4 +32,4 @@ function MovieDetailGuestReviewsContent({ rev }) {
   );
 }
 
-export default MovieDetailGuestReviewsContent;
+export default React.memo(MovieDetailGuestReviewsContent);

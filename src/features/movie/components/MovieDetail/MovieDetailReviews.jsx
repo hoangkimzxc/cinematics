@@ -35,4 +35,4 @@ function MovieDetailReviews({ reviewList }) {
   );
 }
 
-export default MovieDetailReviews;
+export default React.memo(MovieDetailReviews);

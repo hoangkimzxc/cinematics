@@ -77,4 +77,4 @@ function MovieDetailInfo({ movie, credit }) {
   );
 }
 
-export default MovieDetailInfo;
+export default React.memo(MovieDetailInfo);

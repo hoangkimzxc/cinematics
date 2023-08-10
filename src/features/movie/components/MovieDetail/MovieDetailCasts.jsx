@@ -27,4 +27,4 @@ function MovieDetailCasts({ info }) {
   );
 }
 
-export default MovieDetailCasts;
+export default React.memo(MovieDetailCasts);

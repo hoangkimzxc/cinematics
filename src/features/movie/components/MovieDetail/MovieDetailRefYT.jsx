@@ -29,4 +29,4 @@ function MovieDetailRefYT({ videoList }) {
   );
 }
 
-export default MovieDetailRefYT;
+export default React.memo(MovieDetailRefYT);
