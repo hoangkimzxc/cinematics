@@ -1,16 +1,30 @@
-import React from "react";
+import React, { Suspense, useLayoutEffect } from "react";
 import { requests } from "../../../utils/constants";
 import MoviesBanner from "../components/Movies/MoviesBanner";
 import MoviesRow from "../components/Movies/MoviesRow";
 
+// const MoviesBanner = React.lazy(() =>
+//   import("../components/Movies/MoviesBanner")
+// );
+// const MoviesRow = React.lazy(() => import("../components/Movies/MoviesRow"));
+
 function Movies() {
   //muon render dong thoi song song thi call o day roi nhet vao 1 mang chung roi pass prop
+
+  //khong hoat dong
+  useLayoutEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <div className="bg-[#111]">
       <MoviesBanner />
       <div className="pt-8 mx-8">
         <MoviesRow title="Trending" fetchUrl={requests.fetchTrending} />
+
         <MoviesRow title="Top Rated" fetchUrl={requests.fetchTopRated} />
         <MoviesRow
           title="Action Movies"

@@ -18,6 +18,7 @@ function MovieDetail() {
   const [videoList, setVideoList] = useState([]);
   const [recommendedvideoList, setRecommendedVideoList] = useState([]);
   const [reviewList, setReviewList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -74,6 +75,7 @@ function MovieDetail() {
         console.log(error);
       }
     })();
+    setLoading(false);
   }, [movie_id]);
 
   useLayoutEffect(() => {
@@ -121,7 +123,7 @@ function MovieDetail() {
           {videoList.length > 0 ? (
             <MovieDetailRefYT videoList={videoList} />
           ) : (
-            <div className=" bg-[#111] py-12">
+            <div className=" bg-[#111] py-12 mt-[2rem] lg:mt-[5rem]">
               <div className="text-center text-[3rem] border-2 border-amber-500 py-6 mx-[10rem]">
                 No Referenced YouTube Videos
               </div>

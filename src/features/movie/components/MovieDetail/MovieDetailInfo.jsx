@@ -1,12 +1,15 @@
 import React from "react";
 import MovieDetailCasts from "./MovieDetailCasts";
+import { roundUpToOneDec } from "../../../../utils";
+import ImageComponent from "../../../search/components/ImageComponent";
+import "../../../../App.css";
 
 function MovieDetailInfo({ movie, credit }) {
   return (
-    <div className="w-full flex justify-center gap-9 px-8 md:px-14 lg:p-12 xl:p-0 duration-100 transition-all delay-[30ms]">
+    <div className="w-full flex items-center justify-center gap-9 px-8 md:px-14 lg:p-12 xl:p-0 duration-100 transition-all delay-[30ms]">
       {/* Thumbnail n IMDB */}
-      <div className="hidden xl:block xl:w-[30%] 2xl:w-[20%] lg:h-[32rem] duration-100 transition-all delay-[30ms]">
-        <img
+      <div className="height-full mt-[-3rem] hidden xl:block xl:w-[30%] 2xl:w-[20%] lg:h-[32rem] duration-100 transition-all delay-[30ms]">
+        <ImageComponent
           className="h-full w-full bg-auto object-cover bg-center shadow-rose-500/50 rounded-3xl 
         shadow-lg"
           src={
@@ -24,7 +27,7 @@ function MovieDetailInfo({ movie, credit }) {
           alt="failImg"
         />
         <div className="flex font-semibold text-xl mt-4">
-          IMDB: {movie?.vote_average}
+          IMDB: {roundUpToOneDec(movie?.vote_average)}
         </div>
       </div>
 
@@ -62,10 +65,8 @@ function MovieDetailInfo({ movie, credit }) {
 
         <div className="font-semibold text-2xl">Casts</div>
         <div
-          className="hide-scroll h-[15rem] px-2 py-4 flex gap-3 overflow-x-scroll 
-    overflow-y-hidden scroll-smooth
-    
-    "
+          className="hide-scroll h-[16rem] px-2 py-4 flex gap-3 overflow-x-scroll 
+    overflow-y-hidden scroll-smooth"
         >
           {credit?.cast.map((info) => (
             <MovieDetailCasts key={info.cast_id} info={info} />

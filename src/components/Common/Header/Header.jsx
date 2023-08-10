@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../../features/auth/authSlice";
 import "./Header.css";
+import CustomDropdownsMenu from "../CustomDropdownsMenu/CustomDropdownsMenu";
 
 function Header() {
   const navLinkStyles = ({ isActive }) => {
@@ -121,14 +122,18 @@ function Header() {
             </Link>
           </div>
         ) : (
-          <Link
-            to="/login"
-            className="bg-white text-black py-2 px-4 rounded-2xl 
-            ease-in-out hover:-translate-0.5 hover:scale-110 duration-100 hover:bg-red-700 hover:text-white"
-            onClick={handleLogoutClick}
-          >
-            Logout
-          </Link>
+          <CustomDropdownsMenu />
+          // <div className="usser">
+          //   <i className="fa-solid fa-circle-user text-white text-[2rem]"></i>
+          // </div>
+          // <Link
+          //   to="/login"
+          //   className="bg-white text-black py-2 px-4 rounded-2xl
+          //   ease-in-out hover:-translate-0.5 hover:scale-110 duration-100 hover:bg-red-700 hover:text-white"
+          //   onClick={handleLogoutClick}
+          // >
+          //   Logout
+          // </Link>
         )}
       </div>
     </div>

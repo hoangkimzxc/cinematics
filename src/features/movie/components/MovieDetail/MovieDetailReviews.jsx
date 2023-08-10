@@ -7,7 +7,7 @@ function MovieDetailReviews({ reviewList }) {
   return (
     <div
       className="w-full px-[2rem] md:px-[4rem] xl:px-[6.5rem] 2xl:px-[13rem]
-  mt-[2rem] lg:mt-[5rem] duration-100 transition-all delay-[30ms]"
+  my-[2rem] lg:my-[5rem] duration-100 transition-all delay-[30ms]"
     >
       <div className="text-2xl inline-block font-bold mb-4 border-b-4 border-b-rose-600 pb-1">
         Reviews ({reviewList.length})

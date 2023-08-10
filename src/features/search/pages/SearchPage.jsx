@@ -14,7 +14,7 @@ function SearchPage() {
   };
 
   return (
-    <div className="min-h-screen pt-[8rem]">
+    <div className="min-h-screen pt-[8rem] bg-[#111]">
       <div className="flex justify-center my-2">
         <form
           onSubmit={handleSearch}
@@ -34,7 +34,7 @@ function SearchPage() {
           <button>
             <i
               className="fa-solid fa-magnifying-glass text-white hover:cursor-pointer
-            hover:-translate-0.5
+            hover:-translate-0.5 
             hover:scale-110 duration-100 transition-all delay-[30ms]"
             ></i>
           </button>
