@@ -10,7 +10,13 @@ function MovieDetailGuestReviewsContent({ rev }) {
         {rev.author_details.username}
       </div>
       <div className="mb-3 text-sm">
-        {moment(rev.updated_at).format("DD/MM/YYYY HH:mm")}
+        <span>{moment(rev.updated_at).format("DD/MM/YYYY HH:mm")}</span>
+        {rev?.author_details?.rating && (
+          <span className="bg-black px-3 py-1 rounded-full ml-3 text-amber-500 hover:text-amber-400 hover:cursor-default">
+            <i className="fa-solid fa-star mr-1"></i>{" "}
+            {rev.author_details.rating}.0
+          </span>
+        )}
       </div>
       <div className="">
         {!toggleFullText && (
@@ -18,7 +24,7 @@ function MovieDetailGuestReviewsContent({ rev }) {
             <span>{truncateText(rev.content, 400)}</span>
             {checkCharsInString(rev.content, 400) && (
               <span
-                className="text-blue-500 font-semibold hover:cursor-pointer hover:text-blue-400"
+                className="text-blue-500 font-semibold hover:cursor-pointer hover:text-blue-400 "
                 onClick={() => setToggleFullText(true)}
               >
                 See more...

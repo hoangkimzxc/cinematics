@@ -4,6 +4,7 @@ import MovieDetailYourReview from "./MovieDetailYourReview";
 import MovieDetailGuestReviews from "./MovieDetailGuestReviews";
 
 function MovieDetailReviews({ reviewList }) {
+  console.log(reviewList);
   return (
     <div
       className="w-full px-[2rem] md:px-[4rem] xl:px-[6.5rem] 2xl:px-[13rem]

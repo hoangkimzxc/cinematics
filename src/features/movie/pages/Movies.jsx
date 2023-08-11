@@ -55,10 +55,6 @@ function Movies() {
           title="Romance Movies"
           fetchUrl={requests.fetchRomanceMovies}
         />
-        <MoviesRow
-          title="Documentary Movies"
-          fetchUrl={requests.fetchDocumentaryMovies}
-        />
       </div>
     </div>
   );

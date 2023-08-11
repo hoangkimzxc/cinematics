@@ -1,12 +1,14 @@
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../../features/auth/authSlice";
 import "./Header.css";
 import CustomDropdownsMenu from "../CustomDropdownsMenu/CustomDropdownsMenu";
 
 function Header() {
+  const navigate = useNavigate();
+
   const navLinkStyles = ({ isActive }) => {
     return isActive ? "nav-link activated" : "nav-link";
   };
@@ -28,9 +30,11 @@ function Header() {
 
   const dispatch = useDispatch();
   const isLoggedIn = Boolean(localStorage.getItem("token"));
+
   const handleLogoutClick = () => {
     dispatch(logout());
     localStorage.removeItem("token");
+    navigate("/");
     return;
   };
 
@@ -77,7 +81,7 @@ function Header() {
         >
           Movies
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className={navLinkStyles}
           to="/tv"
           onClick={() => {
@@ -88,16 +92,16 @@ function Header() {
           }}
         >
           TV
-        </NavLink>
+        </NavLink> */}
         <NavLink className={navLinkStyles} to="/search_page">
           Search
         </NavLink>
-        <NavLink className={navLinkStyles} to="/news">
+        {/* <NavLink className={navLinkStyles} to="/news">
           News
         </NavLink>
         <NavLink className={navLinkStyles} to="/wishlist">
           Whishlist
-        </NavLink>
+        </NavLink> */}
       </div>
 
       <div className="flex font-bold fixed right-9 z-50 ">
@@ -122,7 +126,7 @@ function Header() {
             </Link>
           </div>
         ) : (
-          <CustomDropdownsMenu />
+          <CustomDropdownsMenu handleLogoutClick={handleLogoutClick} />
           // <div className="usser">
           //   <i className="fa-solid fa-circle-user text-white text-[2rem]"></i>
           // </div>

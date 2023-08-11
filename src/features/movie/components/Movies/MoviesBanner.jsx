@@ -32,10 +32,6 @@ function MoviesBanner({}) {
     }; // Clear the timeout if component unmounts or the array changes
   }, [movie]);
 
-  if (loading) {
-    return <LoadingModal />;
-  }
-
   return (
     <div
       className="relative min-h-[30rem] md:min-h-[35rem] lg:min-h-[40rem]"
@@ -97,7 +93,7 @@ function MoviesBanner({}) {
         </div>
       ) : (
         <div className="absolute z-20 text-white top-[20%] lg:top-[28%] mx-[3rem]">
-          <Skeleton
+          {/* <Skeleton
             sx={{ bgcolor: "#555" }}
             variant="rounded"
             height={130}
@@ -122,7 +118,7 @@ function MoviesBanner({}) {
             variant="rounded"
             height={100}
             width={600}
-          />
+          /> */}
         </div>
       )}
       <Box

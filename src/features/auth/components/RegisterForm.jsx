@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { InputField } from "../../../components/Common/FormFields";
@@ -87,4 +87,4 @@ function RegisterForm({ initialValues, onSubmit, user }) {
   );
 }
 
-export default RegisterForm;
+export default React.memo(RegisterForm);

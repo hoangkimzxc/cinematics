@@ -1,4 +1,5 @@
 import React from "react";
+import { auth } from "../../../../firebase";
 
 function MovieDetailYourReview() {
   return (
@@ -9,7 +10,13 @@ function MovieDetailYourReview() {
         alt=""
       />
       <div className="flex flex-col w-full">
-        <div className="name mb-3 text-2xl font-semibold">Your name</div>
+        <div className="name mb-3 text-2xl font-semibold">
+          {auth?.currentUser?.email ? (
+            <span>{auth?.currentUser?.email}</span>
+          ) : (
+            <span>Your name</span>
+          )}
+        </div>
         <textarea
           className="mb-3 bg-[#111] w-full h-[6rem] p-2 outline-none border border-slate-400 
             rounded-md shadow-md focus:shadow-slate-500/50
@@ -28,4 +35,4 @@ function MovieDetailYourReview() {
   );
 }
 
-export default MovieDetailYourReview;
+export default React.memo(MovieDetailYourReview);
